@@ -1,0 +1,263 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>彩色流动线条</title>
+
+<style>
+html, body {
+  background: black;
+  margin: 0;
+  overflow: hidden;
+  color: white;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 14px;
+}
+
+#options {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 6px;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+}
+#options > div {
+  margin-bottom: 6px;
+}
+
+input {
+  margin-right: 12px;
+  font-family: inherit;
+}
+
+button {
+  font-family: inherit;
+  color: inherit;
+  background: black;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  outline: none;
+}
+button:active {
+  border: 2px solid white;
+}
+</style>
+</head>
+<body>
+
+<div id="options"></div>
+
+<script src="js/p5.min.js"></script>
+<script src="js/p5.dom.min.js"></script>
+<script src="js/d3-voronoi.v1.min.js"></script><script>
+'use strict';
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var ui = {};
+
+var count = 150;
+var particles = [];
+var mouseVisible = false;
+var mouse = undefined;
+
+var voronoi = undefined;
+
+var canvas = undefined;
+
+function setup() {
+	canvas = createCanvas(windowWidth, windowHeight);
+	canvas.elt.onmouseenter = mouseEnter.bind(null, true);
+	canvas.elt.onmouseleave = mouseEnter.bind(null, false);
+
+	ui.particles = createCheckbox('Particles', true);
+	ui.trail = createCheckbox('Trails', true);
+	ui.mouse = createCheckbox('Mouse', false);
+	ui.voronoi = createCheckbox('Voronoi', false);
+	ui.addParticle = createButton('Add 10 Particles');
+	ui.addParticle.mousePressed(function () {
+		for (var i = 0; i < 10; i++) {
+			addParticle();
+		}
+	});
+
+	var optionsContainer = document.getElementById('options');
+	Object.values(ui).forEach(function (n) {
+		return optionsContainer.appendChild(n.elt);
+	});
+
+	fillBackground();
+
+	colorMode(HSB);
+
+	for (var i = 0; i < count; i++) {
+		addParticle();
+	}
+
+	setupVoronoi();
+}
+
+function addParticle() {
+	var particle = new Particle();
+	particle.pos.set(random(width), random(height));
+	particles.push(particle);
+	return particle;
+}
+
+function setupVoronoi() {
+	voronoi = d3.voronoi().extent([[0, 0], [width, height]]);
+}
+
+function fillBackground() {
+	background(0);
+}
+
+function draw() {
+	if (ui.trail.checked()) {
+		fill(0, 0.05);
+		noStroke();
+		rect(0, 0, width, height);
+	} else {
+		fillBackground();
+	}
+
+	if (ui.mouse.checked() && mouseVisible) {
+		mouse = createVector(mouseX, mouseY);
+	}
+
+	if (ui.voronoi.checked()) {
+		drawVoronoi();
+	}
+
+	handleParticles();
+}
+
+function mouseEnter(visibility) {
+	mouseVisible = visibility;
+}
+
+function windowResized() {
+	resizeCanvas(windowWidth, windowHeight);
+	setupVoronoi();
+}
+
+function drawVoronoi() {
+	noFill();
+	stroke(255, 0.2);
+
+	var points = particles.map(function (n) {
+		return n.point();
+	});
+	var v = voronoi(points);
+
+	beginShape(LINES);
+	v.edges.forEach(function (n) {
+		vertex.apply(undefined, n[0]);
+		vertex.apply(undefined, n[1]);
+	});
+	endShape();
+}
+
+function handleParticles() {
+	noStroke();
+
+	var z = frameCount / 400;
+	particles.forEach(function (n, i) {
+		var heading = n.vel.heading();
+
+		if (ui.particles.checked()) {
+			var hu = map(heading, -PI, PI, 0, 360);
+			fill(hu, 100, 100);
+			n.show();
+		}
+
+		var noiseInfluence = noise(n.pos.x / 100, n.pos.y / 100, z);
+		var force = map(noiseInfluence, 0.3, 0.7, 0, TAU);
+		var f = p5.Vector.fromAngle(force).setMag(0.03);
+		n.applyForce(f);
+
+		if (ui.mouse.checked()) {
+			applyMouseInfluence(n);
+		}
+
+		n.update();
+		n.edges();
+	});
+}
+
+function applyMouseInfluence(particle) {
+	if (mouseVisible) {
+		var force = p5.Vector.sub(mouse, particle.pos);
+		var f = force.setMag(0.035);
+		particle.applyForce(f);
+	}
+}
+
+var Particle = function () {
+	function Particle() {
+		_classCallCheck(this, Particle);
+
+		this.pos = createVector(0, 0);
+		this.acc = createVector(0, 0);
+		this.vel = createVector(0, 0);
+	}
+
+	Particle.prototype.applyForce = function applyForce() {
+		var _acc;
+
+		(_acc = this.acc).add.apply(_acc, arguments);
+	};
+
+	Particle.prototype.update = function update() {
+		this.vel.add(this.acc);
+		this.acc.mult(0);
+		this.pos.add(this.vel);
+		this.vel.mult(0.99);
+	};
+
+	Particle.prototype.edges = function edges() {
+		if (this.pos.x < 0) {
+			this.pos.x += width;
+		} else if (this.pos.x > width) {
+			this.pos.x -= width;
+		}
+		if (this.pos.y < 0) {
+			this.pos.y += height;
+		} else if (this.pos.y > height) {
+			this.pos.y -= height;
+		}
+	};
+
+	Particle.prototype.point = function point() {
+		var _this = this;
+
+		return ['x', 'y'].map(function (n) {
+			return _this.pos[n];
+		});
+	};
+
+	Particle.prototype.vertex = function (_vertex) {
+		function vertex() {
+			return _vertex.apply(this, arguments);
+		}
+
+		vertex.toString = function () {
+			return _vertex.toString();
+		};
+
+		return vertex;
+	}(function () {
+		vertex.apply(undefined, this.point());
+	});
+
+	Particle.prototype.show = function show() {
+		// point(...this.point());
+		ellipse.apply(undefined, this.point().concat([4]));
+	};
+
+	return Particle;
+}();
+</script>
+
+</body>
+</html>
+
