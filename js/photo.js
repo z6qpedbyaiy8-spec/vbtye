@@ -1,5 +1,5 @@
 /* 代码整理：懒人之家 www.lanrenzhijia.com */
-var radius = 250;
+var radius = 200;
 var dtr = Math.PI/180;
 var d=300;
 var mcList = [];
@@ -8,7 +8,7 @@ var lasta = 1;
 var lastb = 1;
 var distr = true;
 var tspeed=8;
-var size=250;
+var size=200;
 
 var mouseX=0;
 var mouseY=0;
