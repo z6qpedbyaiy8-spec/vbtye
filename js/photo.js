@@ -1,13 +1,13 @@
 /* 代码整理：懒人之家 www.lanrenzhijia.com */
 var radius = 250;
-var dtr = Math.PI/80;
+var dtr = Math.PI/180;
 var d=300;
 var mcList = [];
 var active = false;
 var lasta = 1;
 var lastb = 1;
 var distr = true;
-var tspeed=10;
+var tspeed=8;
 var size=250;
 
 var mouseX=0;
