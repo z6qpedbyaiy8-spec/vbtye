@@ -1,76 +1,44 @@
-<!doctype html>
+<!DOCTYPE HTML>
 <html>
 <head>
-<title>jquery视差滑块幻灯特效</title>
 <meta charset="utf-8">
-<link rel="stylesheet" type="text/css" href="images/style.css" />
-<script src="images/move.js" type="text/javascript"></script>
-<script src="images/index.js" type="text/javascript"></script>
+<title>穿越厦门</title>
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ultra">
+<link rel="stylesheet" type="text/css" href="js/vegas/jquery.vegas.css">
+<link rel="stylesheet" type="text/css" href="js/jscrollpane/jquery.jscrollpane.css">
+<link rel="stylesheet" type="text/css" href="css/styles.css">
+<script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+<script src="js/jquery.easing.js"></script>
+<script src="js/vegas/jquery.vegas.js"></script>
+<script src="js/jscrollpane/jquery.jscrollpane.min.js"></script>
+<script src="js/buzz/buzz.js"></script>
+<script src="js/gallery.js"></script>
 </head>
+
 <body>
-    <div class="wrapper">
-        
+    <div id="flash"></div>
+    <div id="title">
+        <h1>New York Gallery</h1>
+        <p>Picture by <a href="http://www.16sucai.com">16sucai.com</a></p>
     </div>
-
-    <div id="pxs_container" class="pxs_container">
-        <div class="pxs_bg">
-            <div class="pxs_bg1"></div>
-            <div class="pxs_bg2"></div>
-            <div class="pxs_bg3"></div>
-        </div>
-        <div class="pxs_loading">Loading images...</div>
-        <div class="pxs_slider_wrapper">
-            <ul class="pxs_slider">
-                <li><img src="images/1.jpg" alt="First Image" /></li>
-                <li><img src="images/2.jpg" alt="Second Image" /></li>
-                <li><img src="images/3.jpg" alt="Third Image" /></li>
-                <li><img src="images/4.jpg" alt="Forth Image" /></li>
-                <li><img src="images/5.jpg" alt="Fifth Image" /></li>
-                <li><img src="images/6.jpg" alt="Sixth Image" /></li>
-				<li><img src="images/7.jpg" alt="Fifth Image" /></li>
-                <li><img src="images/8.jpg" alt="Sixth Image" /></li>
-            </ul>
-            <div class="pxs_navigation">
-                <span class="pxs_next"></span>
-                <span class="pxs_prev"></span>
-            </div>
-            <ul class="pxs_thumbnails">
-                <li><img src="images/thumbs/1.jpg" alt="First Image" /></li>
-                <li><img src="images/thumbs/2.jpg" alt="Second Image" /></li>
-                <li><img src="images/thumbs/3.jpg" alt="Third Image" /></li>
-                <li><img src="images/thumbs/4.jpg" alt="Forth Image" /></li>
-                <li><img src="images/thumbs/5.jpg" alt="Fifth Image" /></li>
-                <li><img src="images/thumbs/6.jpg" alt="Sixth Image" /></li>
-				<li><img src="images/thumbs/7.jpg" alt="Forth Image" /></li>
-                <li><img src="images/thumbs/8.jpg" alt="Fifth Image" /></li>
-                <li><img src="images/thumbs/9.jpg" alt="Sixth Image" /></li>
-            </ul>
-        </div>
+    <div id="thumbnails">
+        <ul>
+            <li><a href="img/1.jpg"><img src="img/1a.jpg" title="New York moving" data-valign="top"></a></li>
+            <li><a href="img/2.jpg"><img src="img/2a.jpg" title="New York traffic" data-valign="bottom"></a></li>
+            <li><a href="img/3.jpg"><img src="img/3a.jpg" title="Street dancers"></a></li>
+            <li><a href="img/4.jpg"><img src="img/4a.jpg" title="Lights"></a></li>
+            <li><a href="img/5.jpg"><img src="img/5a.jpg" title="NBC Studio"></a></li>
+            <li><a href="img/6.jpg"><img src="img/6a.jpg" title="New York by night" data-valign="top"></a></li>
+            <li><a href="img/7.jpg"><img src="img/7a.jpg" title="Empire State Building"></a></li>
+            <li><a href="img/8.jpg"><img src="img/8a.jpg" title="New York Promenade" data-valign="top"></a></li>
+            <li><a href="img/9.jpg"><img src="img/9a.jpg" title="Ellis Island Flag" data-valign="top"></a></li>
+            <li><a href="img/0.jpg"><img src="img/10a.jpg" title="Central Park"></a></li>
+            <li><a href="img/1.jpg"><img src="img/11a.jpg" title="Statue of Liberty" data-valign="top"></a></li>
+            <li><a href="img/2.jpg"><img src="img/12a.jpg" title="Shoes"></a></li>
+        </ul>
+    	<div id="pointer"></div>
     </div>
-
-    <div class="footer">
-<div style="text-align:center;clear:both;">
-<script src="/gg_bd_ad_720x90.js" type="text/javascript"></script>
-<script src="/follow.js" type="text/javascript"></script>
-</div>
-
-    
-
-<script>
-var oLoad = getByClass(document.body, 'pxs_loading')[0];
-var oImgBox = getByClass(document.body,'pxs_slider_wrapper')[0];
-//var oEvent=ev||event;
-//var obj=oEvent.srcElement||oEvent.target;
-var imgs = document.getElementsByTagName('img');
-for(var i=0;i<imgs.length;i++)
-{
-	imgs[i].onload = function()
-	{
-		oLoad.style.display = 'none';
-	}
-	oImgBox.style.display = 'block';
-}
-</script>    
-
+    <div id="pause"><a href="#">Paused</a></div>
+    <div id="volume" class="all"><a href="#">Sounds</a></div>
 </body>
 </html>
