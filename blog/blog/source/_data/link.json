@@ -1,0 +1,14 @@
+{
+    "social": {
+        "weibo": "",
+        "github": "https://github.com/qianyecan",
+		"rss": "/atom.xml"
+    },
+    "extern": {
+	    "panda": "http://blog.cnpanda.net/",
+	    "iFurySt": "http://www.ifuryst.com/",
+		"daiker": "http://daiker.com.cn/",
+		"dedsec": "http://blog.dedsec.club"
+		
+    }
+}

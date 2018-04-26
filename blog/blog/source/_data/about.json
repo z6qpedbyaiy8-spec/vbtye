@@ -1,0 +1,39 @@
+{
+    "avatar": "http://p4gdp8beq.bkt.clouddn.com/timgsi1.jpg",
+    "name": "Qianye",
+	"tag": "安全小白",
+    "desc": "改变是一个定律，再多的假装也无法改变这个事实。",
+    "skills": {
+        "python": 2,
+		"php": 2,
+		"javascript": 1,
+		"java": 2,
+		"c语言": 2,
+		"html和css": 2,
+		
+		"invisible-split-line-1": -1,
+		
+        "网络通信": 1,
+		"无线渗透": 1,
+		"web渗透": 1
+    },
+    "projects": [{
+		"name": "项目",
+		"image": "http://pic30.photophoto.cn/20140322/0005018744862852_b.jpg",
+		"tags": ["2018年", "项目标签"],
+		"description": "项目简介",
+		"link_text": "网站链接",
+		"link": ""
+	}, {
+		"name": "作品",
+		"image": "http://a4.topitme.com/l009/1000945474b7d3cbbe.jpg",
+		"description": "作品的简介",
+		"tags": ["Github", "设计"],
+		"link_text": "Github地址",
+		"link": ""
+	}],
+	"reward": [
+	    "http://p4gdp8beq.bkt.clouddn.com/4aa5.JPG",
+		"http://p4gdp8beq.bkt.clouddn.com/12as.JPG"
+	]
+}

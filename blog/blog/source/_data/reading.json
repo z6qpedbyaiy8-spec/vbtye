@@ -1,0 +1,74 @@
+{
+    "define": {
+	    "readed": "已读",
+        "reading": "在读",
+        "wanted": "想读"
+    },
+    "contents": {
+        "readed": [{
+            "title": "web安全深度剖析",
+            "cover": "http://p4gdp8beq.bkt.clouddn.com/0MO7O%6089%29FZHJ9%29~G7%251~Z2.png",
+            "review": "适合web安全渗透小白的一本不错的书",
+            "score": "8",
+            "doubanLink": null
+        },{
+            "title": "pyhon黑帽子",
+            "cover": "http://p4gdp8beq.bkt.clouddn.com/V3%29F%60OU1BI80DYA0%7D801N9I.png",
+            "review": "",
+            "score": "6",
+            "doubanLink": null
+		},{
+            "title": "白帽子讲web安全",
+            "cover": "http://p4gdp8beq.bkt.clouddn.com/G0J$KATA~Q1BD@BSHPKK5%284.png",
+            "review": "挺详细的讲解各个漏洞风险",
+            "score": "8",
+            "doubanLink": null
+		},{
+            "title": "代码审计",
+            "cover": "http://p4gdp8beq.bkt.clouddn.com/4%7D%25BH4UZVTOKJZ6SPC~NSKK.png",
+            "review": "初步了解审计思路",
+            "score": "6",
+            "doubanLink": null
+        },{
+            "title": "pyhon绝技",
+            "cover": "http://p4gdp8beq.bkt.clouddn.com/%5B@SP016F64%5DRW~%25K9AVMP6M.png",
+            "review": "",
+            "score": "6",
+            "doubanLink": null
+		},{
+            "title": "kail无线渗透",
+            "cover": "http://p4gdp8beq.bkt.clouddn.com/6F%5BV@R%25S%28IDE%5BMBFQ%5D1WU7S.png",
+            "review": "AP的简单了解和无线加密方式",
+            "score": "7",
+            "doubanLink": null
+		}],
+		
+		"reading": [{
+            "title": "黑客简史",
+            "cover": "http://p4gdp8beq.bkt.clouddn.com/NV~I4V%5DMPLD%28_NH9SPAW~IQ.png",
+            "review": "你会对黑客技术有种向往",
+            "score": null,
+            "doubanLink": null
+        },{
+            "title": "黑客大追踪",
+            "cover": "http://p4gdp8beq.bkt.clouddn.com/5V%25C%5B%60PM490GOR%60SODPZBDJ.png",
+            "review": "你会对黑客技术有种向往",
+            "score": null,
+            "doubanLink": null
+        },{
+            "title": "metasploit渗透",
+            "cover": "http://p4gdp8beq.bkt.clouddn.com/P8V9P%60GU_BR9RUOXVM%28QRRD.png",
+            "review": "详细的了解metasploit的模块以及扩展方法",
+            "score": null,
+            "doubanLink": null
+        }],
+ 
+        "wanted": [{
+            "title": "汇编语言",
+            "cover": "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=4026137842,2767759571&fm=27&gp=0.jpg",
+            "review": "",
+            "score": null,
+            "doubanLink":null
+        }]
+    }
+}
